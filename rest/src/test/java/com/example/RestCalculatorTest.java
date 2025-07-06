@@ -16,6 +16,10 @@ public class RestCalculatorTest {
     @Autowired
     private MockMvc mockMvc;
 
+    /*
+    I could not find a proper way to mock the calculationKafkaService
+    that was not deprecated, so I'm using the @MockBean annotation.
+    */
     @MockBean
     private CalculationKafkaService calculationKafkaService;
 

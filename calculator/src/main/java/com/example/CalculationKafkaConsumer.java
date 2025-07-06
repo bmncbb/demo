@@ -20,7 +20,7 @@ public class CalculationKafkaConsumer {
 
     @KafkaListener(topics = "calculation-requests", groupId = "calculator-group")
     public void handleCalculationRequest(CalculationRequest request) {
-        logger.info("Received calculation request: {}", request);
+        logger.info("Received calculation request {} with id {}", request, request.getRequestId());
         
         CalculationResponse response;
         

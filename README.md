@@ -2,43 +2,6 @@
 
 This project demonstrates a microservices architecture where a REST API communicates with a Calculator service using Apache Kafka for asynchronous messaging.
 
-## Architecture Overview
-
-```
-┌─────────────────┐    HTTP     ┌─────────────────┐    Kafka     ┌─────────────────┐
-│   REST Client   │ ──────────► │   REST Module   │ ──────────► │ Calculator Module│
-│                 │             │   (Port 8080)   │             │   (Port 8081)   │
-└─────────────────┘             └─────────────────┘             └─────────────────┘
-                                        │                                │
-                                        │                                │
-                                        ▼                                ▼
-                                 ┌─────────────────┐             ┌─────────────────┐
-                                 │ Kafka Producer  │             │ Kafka Consumer  │
-                                 │ (Requests)      │             │ (Requests)      │
-                                 └─────────────────┘             └─────────────────┘
-                                        │                                │
-                                        │                                │
-                                        ▼                                ▼
-                                 ┌─────────────────┐             ┌─────────────────┐
-                                 │ calculation-    │             │ Calculator      │
-                                 │ requests topic  │             │ Service         │
-                                 └─────────────────┘             └─────────────────┘
-                                        │                                │
-                                        │                                │
-                                        ▼                                ▼
-                                 ┌─────────────────┐             ┌─────────────────┐
-                                 │ Kafka Consumer  │             │ Kafka Producer  │
-                                 │ (Responses)     │             │ (Responses)     │
-                                 └─────────────────┘             └─────────────────┘
-                                        │                                │
-                                        │                                │
-                                        ▼                                ▼
-                                 ┌─────────────────┐             ┌─────────────────┐
-                                 │ calculation-    │             │ calculation-    │
-                                 │ responses topic │             │ responses topic │
-                                 └─────────────────┘             └─────────────────┘
-```
-
 ## Modules
 
 ### 1. REST Module (`rest/`)
